@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            ListViewItem lvi = new ListViewItem(txtSTT.Text);
+            lvi.SubItems.Add(txtMa.Text);
+            lvi.SubItems.Add(txtTen.Text);
+            listView1.Items.Add(lvi);
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                listView1.Items.RemoveAt(listView1.SelectedItems[0].Index);
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                ListViewItem lvi = listView1.SelectedItems[0];
+                lvi.SubItems[0].Text = txtSTT.Text;
+                lvi.SubItems[1].Text = txtMa.Text;
+                lvi.SubItems[2].Text = txtTen.Text;
+            }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listView1.SelectedItems.Count > 0)
+            {
+                ListViewItem lvi = listView1.SelectedItems[0];
+                string STT = lvi.SubItems[0].Text;
+                string ma = lvi.SubItems[1].Text;
+                string ten = lvi.SubItems[2].Text;
+                txtSTT.Text = STT;
+                txtMa.Text = ma;
+                txtTen.Text = ten;
+            }
+        }
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == -1)
+            {
+                ColumnHeader culo = listView1.Columns[e.Column];
+                MessageBox.Show(" Chon cot");
+            }
+        }
+    }
+}  
