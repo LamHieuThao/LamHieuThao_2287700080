@@ -60,7 +60,7 @@ namespace WindowsFormsApp3
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if (e.Column == -1)
+            if (e.Column != -1)
             {
                 ColumnHeader culo = listView1.Columns[e.Column];
                 MessageBox.Show(" Chon cot");
